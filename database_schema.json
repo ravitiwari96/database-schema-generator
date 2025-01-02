@@ -1,0 +1,32 @@
+{
+    "students": {
+        "columns": [
+            "phone_number (character varying)",
+            "enrollment_date (timestamp without time zone)",
+            "last_name (character varying)",
+            "student_id (integer)",
+            "date_of_birth (date)",
+            "first_name (character varying)",
+            "email (character varying)"
+        ],
+        "primary_keys": [],
+        "foreign_keys": []
+    },
+    "student_details": {
+        "columns": [
+            "email (character varying)",
+            "address (text)",
+            "enrollment_date (date)",
+            "phone_number (character varying)",
+            "last_name (character varying)",
+            "student_id (integer)",
+            "age (integer)",
+            "graduation_date (date)",
+            "first_name (character varying)",
+            "gpa (numeric)",
+            "gender (character)"
+        ],
+        "primary_keys": [],
+        "foreign_keys": []
+    }
+}

@@ -1,0 +1,4 @@
+Flask
+pyodbc
+psycopg
+mysql-connector-python

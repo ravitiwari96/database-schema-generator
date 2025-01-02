@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Schema Generator</title>
+    <style>
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f54ea2, #ff7676);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Container Styling */
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Header Styling */
+        h1 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #f54ea2;
+        }
+
+        /* Input Fields Styling */
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #f54ea2;
+            outline: none;
+        }
+
+        /* Buttons Styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #f54ea2;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #ff7676;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Error and Success Messages */
+        #error-message, #success-message, #loading-message {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        #error-message {
+            color: #ff5252;
+        }
+
+        #success-message {
+            color: #28a745;
+        }
+
+        #loading-message {
+            color: #007bff;
+        }
+
+        /* Download Button Styling */
+        #download-button {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #28a745;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        #download-button:hover {
+            background: #1d8f3f;
+            transform: scale(1.05);
+        }
+
+        #download-button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Schema Generator</h1>
+        <form id="db-form">
+            <!-- Set default database type to SQL Server -->
+            <input type="hidden" id="db-type" value="sqlserver">
+            <input type="text" id="host" placeholder="Host" required>
+            <input type="text" id="database" placeholder="Database" required>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Generate Schema</button>
+        </form>
+
+        <div id="loading-message"></div>
+        <div id="error-message"></div>
+        <div id="success-message"></div>
+
+        <!-- Download Button -->
+        <button id="download-button">Download Schema File</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dbTypeInput = document.getElementById('db-type');
+            const hostInput = document.getElementById('host');
+            const databaseInput = document.getElementById('database');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const downloadButton = document.getElementById('download-button');
+
+            // Form submission handling
+            document.getElementById('db-form').addEventListener('submit', async function (e) {
+                e.preventDefault(); // Prevent page refresh
+
+                const errorMessage = document.getElementById('error-message');
+                const successMessage = document.getElementById('success-message');
+                const loadingMessage = document.getElementById('loading-message');
+
+                // Clear previous messages
+                errorMessage.textContent = '';
+                successMessage.textContent = '';
+                loadingMessage.textContent = '';
+                downloadButton.style.display = 'none';
+
+                // Show loading message
+                loadingMessage.textContent = 'Schema is generating...';
+
+                const formData = {
+                    db_type: dbTypeInput.value, // Always "sqlserver" by default
+                    host: hostInput.value,
+                    database: databaseInput.value,
+                    username: usernameInput.value,
+                    password: passwordInput.value
+                };
+
+                try {
+                    const response = await fetch('/generate-schema', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+                    loadingMessage.textContent = ''; // Clear loading message
+
+                    if (data.success) {
+                        successMessage.textContent = 'Schema generated successfully!';
+                        
+                        // Show the download button
+                        downloadButton.style.display = 'block';
+
+                        // Set download button's functionality
+                        downloadButton.addEventListener('click', function () {
+                            window.location.href = data.file_url; // Navigate to the file URL
+                        });
+                    } else {
+                        errorMessage.textContent = 'Error: ' + data.error;
+                    }
+                } catch (error) {
+                    loadingMessage.textContent = ''; // Clear loading message
+                    errorMessage.textContent = 'Error: ' + error.message;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
