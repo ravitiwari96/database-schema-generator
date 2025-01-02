@@ -30,10 +30,10 @@
             python app.py
           
 **Step 4:** Accessing the User Interface
-            After running the app.py, a user interface will be available where you can:
-          - Enter the credentials for your database (host, username, password, and database name).
-          - Click the "Generate Schema" button.
-          - The schema will be automatically generated, and you can download it in JSON format.
+    After running the app.py, a user interface will be available where you can:
+  - Enter the credentials for your database (host, username, password, and database name).
+  - Click the "Generate Schema" button.
+  - The schema will be automatically generated, and you can download it in JSON format.
 
 ## Supported Databases
   - PostgreSQL
