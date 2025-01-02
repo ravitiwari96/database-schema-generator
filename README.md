@@ -1,18 +1,17 @@
 ## Database Schema Generator
-
-  SCHEMAGENERATOR/
-  ├──db_connections
-  |   ├──mysql_conn.py
-  |   ├──postgresql_conn.py
-  |   ├──sqlserver_conn.py
-  ├── app.py                  # Main Flask application
-  ├── templates/
-  │   ├── index.html          # HTML for the user interface
-  ├── database_schema.json    # Generated schema file (output)
-  ├── requirements.txt        # Python dependencies
-  └── README.md               # Project documentation
-
-
+    SCHEMAGENERATOR/
+    ├──db_connections
+    |   ├──mysql_conn.py
+    |   ├──postgresql_conn.py
+    |   ├──sqlserver_conn.py
+    ├── app.py                  # Main Flask application
+    ├── templates/
+    │   ├── index.html          # HTML for the user interface
+    ├── database_schema.json    # Generated schema file (output)
+    ├── requirements.txt        # Python dependencies
+    └── README.md               # Project documentation
+  
+  
 
 
 
