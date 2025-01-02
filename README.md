@@ -19,12 +19,14 @@
             
 **Step 2:** Install Required Libraries
             Activate your virtual environment and install the necessary dependencies:
+            
           - **On Windows use: venv\Scripts\activate**
           - **pip install -r requirements.txt**
 
 **Step 3:** Running the Application
             Run the application by executing the following command:
-          - **python app.py**
+            
+          - python app.py
           
 **Step 4:** Accessing the User Interface
             After running the app.py, a user interface will be available where you can:
