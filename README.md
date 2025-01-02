@@ -1,4 +1,4 @@
-SCHEMAGENERATOR/
+## SCHEMAGENERATOR/
 ├──db_connections
 |   ├──mysql_conn.py
 |   ├──postgresql_conn.py
