@@ -40,6 +40,10 @@
   - MySQL
   - SQL Server
 
+
+<img width="725" alt="image" src="https://github.com/user-attachments/assets/e81aea87-7bef-413f-a5a9-8a503b53573a" />
+
+
 ## How It Works
   - You input the necessary database credentials.
   - The tool connects to your database, retrieves the schema, and converts it into a JSON format.
