@@ -2,7 +2,7 @@ SCHEMAGENERATOR/
 ├──db_connections
 |   ├──mysql_conn.py
 |   ├──postgresql_conn.py
-|   ├──sqlserver_conn.py
+|   ├──sqlserver_conn.py 
 ├── app.py                  # Main Flask application
 ├── templates/
 │   ├── index.html          # HTML for the user interface
