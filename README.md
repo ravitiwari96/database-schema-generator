@@ -15,22 +15,22 @@
 ## Installation and Setup
 **Step 1:** Create a Virtual Environment
             It's recommended to set up a virtual environment to avoid package conflicts.
-            **python -m venv venv**
+            
+            python -m venv venv
             
 **Step 2:** Install Required Libraries
             Activate your virtual environment and install the necessary dependencies:
             
-          - **On Windows use: venv\Scripts\activate**
-          - **pip install -r requirements.txt**
+            venv\Scripts\activate
+            pip install -r requirements.txt
 
 **Step 3:** Running the Application
             Run the application by executing the following command:
             
-          - python app.py
+            python app.py
           
 **Step 4:** Accessing the User Interface
             After running the app.py, a user interface will be available where you can:
-
           - Enter the credentials for your database (host, username, password, and database name).
           - Click the "Generate Schema" button.
           - The schema will be automatically generated, and you can download it in JSON format.
